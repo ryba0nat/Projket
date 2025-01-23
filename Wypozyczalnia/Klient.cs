@@ -18,10 +18,10 @@ namespace WypozyczalniaSprzetu
             get => pesel;
             set
             {
-                if (string.IsNullOrWhiteSpace(value) || value.Length != 11)
+               /* if (string.IsNullOrWhiteSpace(value) || value.Length != 11)
                 {
                     throw new NieprawidlowyPeselException($"PESEL musi mieć dokładnie 11 znaków. Podano: {value}");
-                }
+                }*/
                 pesel = value;
             }
         }

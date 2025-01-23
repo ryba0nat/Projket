@@ -20,11 +20,11 @@ namespace WypozyczalniaSprzetu
         {
             get => rozmiar;
             set
-            {
+            {/*
                 if (value <= 0)
                 {
                     throw new NieprawidlowyRozmiarException($"Rozmiar musi być większy od 0. Podano: {value}");
-                }
+                }*/
                 rozmiar = value;
             }
         }

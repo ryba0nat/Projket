@@ -67,7 +67,7 @@ namespace WypozyczalniaGUI
 
             // Dodaj sprzęt do SprzetManager
             sprzetManager.DodajSprzet(nowySprzet);
-            DataManager.ZapiszSprzet(sprzetManager.GetSprzet()); // ✔ Zapisujemy sprzęt do XML
+            DataManager.ZapiszSprzet(sprzetManager.GetSprzet()); //  Zapisujemy sprzęt do XML
 
 
             CzyDodano = true;

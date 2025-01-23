@@ -9,7 +9,7 @@ namespace WypozyczalniaGUI
     {
         public string Rodzaj { get; private set; }
         public string TypSprzetu { get; private set; }
-        public string Rozmiar { get; private set; }
+        public int Rozmiar { get; private set; } // Zmieniono typ na int
         public string StanTechniczny { get; private set; }
         public bool CzyDodano { get; private set; } = false;
         private SprzetManager sprzetManager;
@@ -40,24 +40,25 @@ namespace WypozyczalniaGUI
                 return;
             }
 
-            if (!int.TryParse(RozmiarTextBox.Text, out int rozmiar))
+            // Sprawdzenie czy rozmiar jest liczbą oraz czy jest większy od 0
+            if (!int.TryParse(RozmiarTextBox.Text, out int rozmiar) || rozmiar <= 0)
             {
-                MessageBox.Show("Podaj poprawny rozmiar (liczba)!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Podaj poprawny rozmiar!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
+            Rozmiar = rozmiar; // Przypisanie poprawnego rozmiaru
             TypSprzetu = TypSprzetuTextBox.Text;
-            //Rozmiar = RozmiarTextBox.Text;
             StanTechniczny = StanTextBox.Text;
 
             SprzetNarciarski nowySprzet;
             if (Rodzaj == "Narty")
             {
-                nowySprzet = new Narty(TypSprzetu, rozmiar, StanTechniczny, false);
+                nowySprzet = new Narty(TypSprzetu, Rozmiar, StanTechniczny, false);
             }
             else if (Rodzaj == "Snowboard")
             {
-                nowySprzet = new Snowboard(TypSprzetu, rozmiar, StanTechniczny, false);
+                nowySprzet = new Snowboard(TypSprzetu, Rozmiar, StanTechniczny, false);
             }
             else
             {
@@ -67,8 +68,7 @@ namespace WypozyczalniaGUI
 
             // Dodaj sprzęt do SprzetManager
             sprzetManager.DodajSprzet(nowySprzet);
-            DataManager.ZapiszSprzet(sprzetManager.GetSprzet()); //  Zapisujemy sprzęt do XML
-
+            DataManager.ZapiszSprzet(sprzetManager.GetSprzet()); 
 
             CzyDodano = true;
 
